@@ -2,6 +2,19 @@ import os
 import pandas as pd
 
 def cargar_inventario(ruta_archivo="inventario.txt"):
+
+    columnas = ["id_med", "nombre", "sucursal", "stock", "precio"]
+    
+    # Si no existe o tiene 0 bytes de tamaño
+    if not os.path.exists(ruta_archivo) or os.path.getsize(ruta_archivo) == 0:
+        return pd.DataFrame(columns=columnas)
+    
+    try:
+        df = pd.read_csv(ruta_archivo)
+        return df
+    except EmptyDataError:
+        return pd.DataFrame(columns=columnas)
+    
     if os.path.exists(ruta_archivo):
         # Lee el archivo separado por comas directamente
         df = pd.read_csv(ruta_archivo)
