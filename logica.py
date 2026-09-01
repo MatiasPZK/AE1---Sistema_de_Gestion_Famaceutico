@@ -1,8 +1,8 @@
 import pandas as pd
 from datetime import datetime
 
+#funcion para inciar la tabla de ventas
 def iniciar_tabla_ventas():
-    """Crea una tabla vacía para registrar las ventas del día."""
     columnas = [
         "id_venta",
         "fecha_hora",
@@ -17,17 +17,13 @@ def iniciar_tabla_ventas():
     return pd.DataFrame(columns=columnas)
 
 def registrar_venta(df_inventario, df_ventas, id_med, cantidad, vendedor, tasa_comision=0.10):
-    """
-    Intenta realizar una venta.
-    Devuelve: (True, mensaje_exito) si se pudo vender, o (False, mensaje_error) si falló.
-    """
-    # 1. Filtramos la fila del medicamento por su ID
+    #filtra la fila del medicamento por su ID
     fila = df_inventario[df_inventario["id_med"] == id_med]
     
     if fila.empty:
         return False, "Error: El medicamento no existe en el inventario."
     
-    # Obtenemos el índice real de la fila en el DataFrame
+    #Obitiene el índice real de la fila en el DataFrame
     idx = fila.index[0]
     stock_actual = df_inventario.loc[idx, "stock"]
     
@@ -68,7 +64,6 @@ def registrar_venta(df_inventario, df_ventas, id_med, cantidad, vendedor, tasa_c
     return True, f"Venta exitosa! Total: ${total:,.2f} | Comisión: ${comision:,.2f}"
 
 def actualizar_stock(df_inventario, id_med, cantidad_a_sumar):
-    """Suma unidades al stock existente de un medicamento."""
     fila = df_inventario[df_inventario["id_med"] == id_med]
     
     if fila.empty:
@@ -82,7 +77,6 @@ def actualizar_stock(df_inventario, id_med, cantidad_a_sumar):
     return True, f"Stock actualizado con éxito. Nuevo stock: {df_inventario.loc[idx, 'stock']}"
 
 def obtener_metricas_dia(df_ventas):
-    """Devuelve el total de ingresos, comisiones y comisiones por vendedor."""
     if df_ventas.empty:
         return {
             "total_ingresos": 0.0,

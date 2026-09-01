@@ -1,0 +1,8 @@
+id_med,nombre,sucursal,stock,precio
+1,Ibuprofeno 600mg,Centro,40,3500.0
+2,Paracetamol 500mg,Centro,0,2800.0
+3,Amoxicilina 500mg,Villa Sarita,635,6200.0
+4,Actron600 600gm,Itaembe Mini,48,3000.0
+5,Fentanilo 5kg,A4,7,860000.0
+6,Clonacepan 30g,BARRIO DE CATALINA,0,3.0
+7,Amblodipina 10ml,Itaembe Mini,830,5000.0
